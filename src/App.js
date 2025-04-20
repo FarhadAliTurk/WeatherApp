@@ -1,41 +1,25 @@
-import React from 'react';
-import Header from './components/Header';
-import TodoForm from './components/TodoForm';
-import TodoList from './components/TodoList';
-import Footer from './components/Footer';
-import './App.css';
+import React from "react";
+import { Helmet } from "react-helmet";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import Footer from "./components/Footer";
+import "./App.css"
 
-function App() {
-  const [todos, setTodos] = React.useState([]);
-
-  const addTodo = (todo) => {
-    setTodos([...todos, todo]);
-  };
-
-  const toggleComplete = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-
-  const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
+const App = () => {
   return (
-    <div className="container mt-5">
+    <div>
+      <Helmet>
+        <title>React Weather App</title>
+        <meta
+          name="description"
+          content="A modern React weather app for real-time weather updates."
+        />
+      </Helmet>
       <Header />
-      <TodoForm addTodo={addTodo} />
-      <TodoList
-        todos={todos}
-        toggleComplete={toggleComplete}
-        deleteTodo={deleteTodo}
-      />
-           <Footer />
+      <Home />
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
