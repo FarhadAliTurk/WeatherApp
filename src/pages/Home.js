@@ -6,10 +6,10 @@ const Home = () => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
 
   const fetchWeather = async () => {
-    setLoading(true); // Start spinner animation
+    setLoading(true);
     setError(null);
     setWeather(null);
     try {
@@ -20,30 +20,26 @@ const Home = () => {
     } catch (err) {
       setError("City not found. Please try again.");
     } finally {
-      setLoading(false); // Stop spinner animation
+      setLoading(false);
     }
   };
 
   return (
-    <div className="container mt-4">
-      <div className="input-group mb-3">
+    <div className="home-container">
+      <div className="search-container">
         <input
           type="text"
-          className="form-control"
+          className="city-input"
           placeholder="Enter city name"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={fetchWeather}>
+        <button className="search-button" onClick={fetchWeather}>
           Search
         </button>
       </div>
-      {loading && (
-        <div className="loading-container">
-          <div className="spinner"></div>
-        </div>
-      )}
-      {error && <div className="alert alert-danger">{error}</div>}
+      {loading && <div className="loading-spinner"></div>}
+      {error && <div className="error-message">{error}</div>}
       {weather && <WeatherCard weather={weather} />}
     </div>
   );

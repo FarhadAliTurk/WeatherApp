@@ -1,13 +1,13 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet"; // SEO optimization
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
-import "./App.css"
+import "./App.css";
 
 const App = () => {
   return (
-    <div>
+    <div className="app-container">
       <Helmet>
         <title>React Weather App</title>
         <meta
@@ -16,7 +16,9 @@ const App = () => {
         />
       </Helmet>
       <Header />
-      <Home />
+      <main className="main-content">
+        <Home />
+      </main>
       <Footer />
     </div>
   );
